@@ -32,3 +32,33 @@
    pip install keyboard
 
 Важно: Использование этого кода может нарушать политику безопасности некоторых систем или приложений. Пожалуйста, используйте его ответственно и только в тех случаях, когда у вас есть явное разрешение на эмуляцию ввода с клавиатуры.
+
+A program that emulates the process of typing text copied to the clipboard with a delay between keystrokes.
+
+This Python program performs the following actions:
+
+1) Imports the necessary modules: pyperclip to work with the clipboard, keyboard to emulate keystrokes, time to work with time, random to generate random numbers.
+
+2) Defines the type_text function, which takes the buffer string as an argument. This function iterates through each character in buffer and, if the ‘p’ key is not pressed, emulates pressing this character with a delay of 0.095 to 0.15 seconds. If the ‘p’ key is pressed, the function displays the message “The program is stopped" and stops typing.
+
+3) Reads text from the clipboard and saves it to the text variable.
+
+4) Displays the message “Your copied text:” and then the copied text itself.
+
+5) It waits for 5 seconds.
+
+6) Reads the text from the clipboard again and saves it to the buffer variable.
+
+7) Calls the type_text function with buffer as an argument.
+
+8) In general, this program emulates the process of typing text copied to the clipboard, with a delay between keystrokes. This can be useful, for example, to automate text input in applications that do not support pasting from the clipboard.
+
+To run this program, follow these steps:
+
+1) Install Python if it is not already installed. You can download it from the official Python website.
+   https://www.python.org/ftp/python/3.12.2/python-3.12.2-amd64.exe
+
+3) Install the necessary libraries. Open a command prompt or terminal and type the following commands:
+   pip install pyperclip
+   pip install keyboard
+Important: Using this code may violate the security policy of some systems or applications. Please use it responsibly and only in cases where you have explicit permission to emulate keyboard input.
