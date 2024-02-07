@@ -1,4 +1,4 @@
-# Akemu-Python-A-keystroke-emulator-
+# Akemu-Python-Эмулятор-нажатия-клавиш-
 Программа, которая эмулирует процесс ввода текста, скопированного в буфер обмена, с задержкой между нажатиями клавиш.
 
 Эта программа на Python выполняет следующие действия:
@@ -32,7 +32,7 @@
    pip install keyboard
 
 Важно: Использование этого кода может нарушать политику безопасности некоторых систем или приложений. Пожалуйста, используйте его ответственно и только в тех случаях, когда у вас есть явное разрешение на эмуляцию ввода с клавиатуры.
-
+# Akemu-Python-A-keystroke-emulator-
 A program that emulates the process of typing text copied to the clipboard with a delay between keystrokes.
 
 This Python program performs the following actions:
