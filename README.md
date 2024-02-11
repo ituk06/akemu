@@ -62,4 +62,5 @@ To run this program, follow these steps:
 3) Install the necessary libraries. Open a command prompt or terminal and type the following commands:
    pip install pyperclip
    pip install keyboard
+   pip install customtkinter
 Important: Using this code may violate the security policy of some systems or applications. Please use it responsibly and only in cases where you have explicit permission to emulate keyboard input.
