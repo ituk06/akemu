@@ -1,5 +1,5 @@
-# Akemu-Python-Эмулятор-нажатия-клавиш-
-Программа, которая эмулирует процесс ввода текста, скопированного в буфер обмена, с задержкой между нажатиями клавиш.
+# Akemu Python (Эммулятор нажатия клавиш клавиатуры) 
+Программа с графическим интерфейсом которая эмулирует нажатие клавиш используя буфер обмена.
 
 Эта программа на Python выполняет следующие действия:
 1) Импортирует необходимые модули:
@@ -14,7 +14,7 @@
 
 4) Выводит на экран сообщение “Ваш скопированный текст:” и затем сам скопированный текст.
 
-5) Ждет 5 секунд.
+5) Ждет 10 секунд.
 
 6) Снова считывает текст из буфера обмена и сохраняет его в переменную buffer.
 
@@ -33,7 +33,8 @@
    pip install customtkinter
 
 Важно: Использование этого кода может нарушать политику безопасности некоторых систем или приложений. Пожалуйста, используйте его ответственно и только в тех случаях, когда у вас есть явное разрешение на эмуляцию ввода с клавиатуры.
-# Akemu-Python-A-keystroke-emulator-
+
+# Akemu Python (A keystroke emulator) 
 A program that emulates the process of typing text copied to the clipboard with a delay between keystrokes.
 
 This Python program performs the following actions:
@@ -46,7 +47,7 @@ This Python program performs the following actions:
 
 4) Displays the message “Your copied text:” and then the copied text itself.
 
-5) It waits for 5 seconds.
+5) It waits for 10 seconds.
 
 6) Reads the text from the clipboard again and saves it to the buffer variable.
 
