@@ -31,6 +31,7 @@
    pip install pyperclip
    pip install keyboard
    pip install customtkinter
+
 Важно: Использование этого кода может нарушать политику безопасности некоторых систем или приложений. Пожалуйста, используйте его ответственно и только в тех случаях, когда у вас есть явное разрешение на эмуляцию ввода с клавиатуры.
 # Akemu-Python-A-keystroke-emulator-
 A program that emulates the process of typing text copied to the clipboard with a delay between keystrokes.
