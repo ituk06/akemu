@@ -14,7 +14,7 @@
 
 4) Выводит на экран сообщение “Ваш скопированный текст:” и затем сам скопированный текст.
 
-5) Ждет 10 секунд.
+5) Ждет 3 секунд.
 
 6) Снова считывает текст из буфера обмена и сохраняет его в переменную buffer.
 
@@ -47,7 +47,7 @@ This Python program performs the following actions:
 
 4) Displays the message “Your copied text:” and then the copied text itself.
 
-5) It waits for 10 seconds.
+5) It waits for 3 seconds.
 
 6) Reads the text from the clipboard again and saves it to the buffer variable.
 
