@@ -2,9 +2,10 @@ import pyperclip
 import keyboard
 import random
 import customtkinter
+import time
 
 
-class AkemuPython(customtkinter.CTk):
+class Akemu(customtkinter.CTk):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -17,7 +18,7 @@ class AkemuPython(customtkinter.CTk):
         logo_label = customtkinter.CTkLabel(self, text="Буфер обмена",
                                             font=customtkinter.CTkFont(size=20, weight="bold"))
         logo_label.grid(row=0, column=0, padx=20, pady=(20, 0))
-        self.countdown_label = customtkinter.CTkLabel(self, text="00:10",
+        self.countdown_label = customtkinter.CTkLabel(self, text="00:03",
                                                       font=customtkinter.CTkFont(size=20, weight="bold"))
         self.countdown_label.grid(row=0, column=1, padx=(95, 20), pady=(20, 0))
         self.textbox = customtkinter.CTkTextbox(self, width=300, height=240)
@@ -30,12 +31,18 @@ class AkemuPython(customtkinter.CTk):
         self.clipboard_content = pyperclip.paste()
         self.check_clipboard()
 
+        keyboard.add_hotkey('ctrl + b', self.execute_commands_hotkey)
+
+    def execute_commands_hotkey(self):
+        time.sleep(0.5)
+        self.start_typing()
+
     def execute_commands(self):
         self.start_countdown()
-        self.after(11000, self.start_typing)
+        self.after(4000, self.start_typing)
 
     def start_countdown(self):
-        self.countdown(10)
+        self.countdown(3)
 
     def countdown(self, count):
         if count >= 0:
@@ -44,20 +51,16 @@ class AkemuPython(customtkinter.CTk):
             self.countdown_label.configure(text=timer)
             self.after(1000, self.countdown, count - 1)
         else:
-            self.countdown_label.configure(text="00:10")
+            self.countdown_label.configure(text="00:03")
 
     @staticmethod
     def type_text(buffer):
         for character in buffer:
             if keyboard.is_pressed('p'):
-                print('Программа остановлена')
                 break
             keyboard.write(character, delay=random.uniform(0.095, 0.15))
 
     def start_typing(self):
-        text = pyperclip.paste()
-        print('Ваш скопированный текст:')
-        print(text)
         buffer = pyperclip.paste()
         self.type_text(buffer)
 
@@ -78,5 +81,5 @@ class AkemuPython(customtkinter.CTk):
 
 
 if __name__ == "__main__":
-    app = AkemuPython()
+    app = Akemu()
     app.mainloop()
