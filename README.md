@@ -31,3 +31,7 @@ pip install -r requirements.txt
 ```bash
 python akemu.py
 ```
+
+## Пример работы
+
+![akemu](https://github.com/user-attachments/assets/3fc2fbe5-493a-44f3-b249-51bf61f8cba4)
