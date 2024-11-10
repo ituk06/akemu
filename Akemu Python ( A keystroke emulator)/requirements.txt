@@ -1,5 +1,0 @@
-pyperclip
-keyboard
-random
-customtkinter
-time
