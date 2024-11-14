@@ -1,8 +1,8 @@
+import random
+import time
 import pyperclip
 import keyboard
-import random
 import customtkinter
-import time
 
 
 class Akemu(customtkinter.CTk):
