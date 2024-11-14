@@ -33,6 +33,7 @@ pip install -r requirements.txt
 
 ### Запуск проекта:
 ```bash
+cd src
 python akemu.py
 ```
 
