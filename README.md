@@ -21,8 +21,19 @@ Akemu — это простое приложение на Python с графич
 ### Клонирование репозитория:
 
 ```bash
-git clone https://github.com/Rashid-Yusubov/Akemu.git
-cd Akemu
+git clone https://github.com/Rashid-Yusubov/akemu.git
+cd akemu
+```
+
+### Установка зависимостей 
+
+```
+# Активируйте виртуальное окружение
+python -m venv venv
+# Для Windows:
+venv\Scripts\activate
+# Для MacOS/Linux:
+source venv/bin/activate
 ```
 
 ### Установка необходимых библиотек:
