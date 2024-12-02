@@ -1,7 +1,5 @@
 # Akemu
 
-![README md](https://github.com/user-attachments/assets/f79f260b-2280-41a4-af9e-7c1f7423c559)
-
 ![image](https://github.com/user-attachments/assets/a92d0d72-326f-44c9-817f-39cd0b398524)
 
 ## Общее описание
