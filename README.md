@@ -25,14 +25,21 @@ git clone https://github.com/Rashid-Yusubov/akemu.git
 cd akemu
 ```
 
-### Установка зависимостей 
+### Создание виртуального окружения
+
+```python
+python -m venv .venv
+```
+
+### Активация виртуального окружения (Windows)
 
 ```bash
-# Активируйте виртуальное окружение
-python -m venv .venv
-# Для Windows:
 .venv\Scripts\activate
-# Для MacOS/Linux:
+```
+
+### Активация виртуального окружения (MacOS/Linux)
+
+```bash
 source venv/bin/activate
 ```
 
