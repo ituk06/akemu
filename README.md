@@ -31,7 +31,7 @@ cd akemu
 # Активируйте виртуальное окружение
 python -m venv venv
 # Для Windows:
-venv\Scripts\activate
+.venv\Scripts\activate
 # Для MacOS/Linux:
 source venv/bin/activate
 ```
