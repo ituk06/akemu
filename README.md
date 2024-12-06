@@ -20,7 +20,7 @@ Akemu — это простое приложение на Python с графич
 ### Клонирование репозитория:
 
 ```bash
-git clone https://github.com/Rashid-Yusubov/akemu.git
+git clone https://github.com/rashidyusubov/akemu.git
 cd akemu
 ```
 
