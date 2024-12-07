@@ -50,8 +50,7 @@ pip install -r requirements.txt
 
 ### Запуск проекта:
 ```bash
-cd src
-python akemu.py
+python src/akemu.py
 ```
 
 ## Пример работы
