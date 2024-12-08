@@ -27,13 +27,13 @@ cd akemu
 ### Создание виртуального окружения
 
 ```python
-python -m venv .venv
+python -m venv venv
 ```
 
 ### Активация виртуального окружения (Windows)
 
 ```bash
-.venv\Scripts\activate
+venv\Scripts\activate
 ```
 
 ### Активация виртуального окружения (MacOS/Linux)
