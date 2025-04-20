@@ -15,6 +15,7 @@ class Akemu(customtkinter.CTk):
     Главное окно приложения Akemu, которое отображает таймер,
     буфер обмена и кнопки для запуска действий.
     """
+
     def __init__(self, *args, **kwargs):
         """
         Инициализация главного окна.
@@ -22,18 +23,23 @@ class Akemu(customtkinter.CTk):
         super().__init__(*args, **kwargs)
 
         self.title("Akemu")
-        self.geometry("355x380")
+        self.geometry("355x420")
         self.grid_columnconfigure(0, weight=1)
         self.resizable(width=False, height=False)
         self.attributes('-topmost', 1)
 
+        # Флаги управления печатью
+        self.is_paused = False
+        self.is_stopped = False
+
+        # Интерфейс
         logo_label = customtkinter.CTkLabel(
             self, text="Буфер обмена", font=customtkinter.CTkFont(size=20, weight="bold")
         )
         logo_label.grid(row=0, column=0, padx=20, pady=(20, 0))
 
         self.countdown_label = customtkinter.CTkLabel(
-            self, text="00:04", font=customtkinter.CTkFont(size=20, weight="bold")
+            self, text="00:03", font=customtkinter.CTkFont(size=20, weight="bold")
         )
         self.countdown_label.grid(row=0, column=1, padx=(95, 20), pady=(20, 0))
 
@@ -42,8 +48,17 @@ class Akemu(customtkinter.CTk):
         self.textbox.insert("0.0", pyperclip.paste())
         self.textbox.configure(state='disabled')
 
+        # Кнопка "Начать"
         button = customtkinter.CTkButton(self, text="Начать", command=self.execute_commands)
-        button.grid(row=2, column=0, padx=20, pady=20, sticky="ew", columnspan=2)
+        button.grid(row=2, column=0, padx=20, pady=10, sticky="ew", columnspan=2)
+
+        # Кнопка "Пауза"
+        pause_button = customtkinter.CTkButton(self, text="Пауза", command=self.pause_typing)
+        pause_button.grid(row=3, column=0, padx=20, pady=(0, 10), sticky="ew")
+
+        # Кнопка "Стоп"
+        stop_button = customtkinter.CTkButton(self, text="Стоп", command=self.stop_typing)
+        stop_button.grid(row=3, column=1, padx=20, pady=(0, 10), sticky="ew")
 
         self.clipboard_content = pyperclip.paste()
         self.check_clipboard()
@@ -82,50 +97,61 @@ class Akemu(customtkinter.CTk):
         else:
             self.countdown_label.configure(text="00:03")
 
-    @staticmethod
-    def type_text(buffer: str) -> None:
+    def start_typing(self) -> None:
         """
-        Печатает текст из буфера обмена очень медленно, с реалистичными паузами, опечатками и задержками.
+        Начинает печатать текст из буфера обмена.
         """
-        typo_probability = 0.05          # Вероятность случайной опечатки
-        pause_probability = 0.18         # Вероятность "зависания" после символа
-        correction_delay = (0.6, 1.0)    # Пауза перед исправлением опечатки
-    
+        self.is_stopped = False  # Сброс флага остановки
+        buffer = pyperclip.paste()
+        self.type_text(buffer)
+
+    def pause_typing(self) -> None:
+        """
+        Устанавливает флаг паузы. Печать приостанавливается на 1-2 секунды.
+        """
+        self.is_paused = True
+
+    def stop_typing(self) -> None:
+        """
+        Устанавливает флаг остановки. Печать полностью прекращается.
+        """
+        self.is_stopped = True
+
+    def type_text(self, buffer: str) -> None:
+        """
+        Печатает текст с задержками, опечатками, паузами, и возможностью паузы/остановки.
+        """
+        typo_probability = 0.05
+        pause_probability = 0.18
+        correction_delay = (0.6, 1.0)
+
         for character in buffer:
-            if keyboard.is_pressed('p'):
+            if keyboard.is_pressed('p') or self.is_stopped:
                 break
-    
-            # Основная задержка между символами — намного медленнее
+
+            if self.is_paused:
+                time.sleep(random.uniform(1.0, 2.0))
+                self.is_paused = False
+
             delay = random.uniform(0.5, 0.9)
-    
-            # Увеличенные задержки для знаков препинания и новой строки
+
             if character in ['.', ',', ';', ':', '-', '—', '!', '?']:
                 delay += random.uniform(0.8, 1.5)
             elif character == '\n':
                 delay += random.uniform(1.0, 1.8)
-    
-            # Имитация опечатки
+
             if random.random() < typo_probability and character.isalpha():
                 wrong_char = random.choice('abcdefghijklmnopqrstuvwxyz')
                 keyboard.write(wrong_char, delay=0)
                 time.sleep(random.uniform(*correction_delay))
                 keyboard.send('backspace')
                 time.sleep(random.uniform(0.4, 0.6))
-    
+
             keyboard.write(character, delay=0)
             time.sleep(delay)
-    
-            # Случайная "глубокая" пауза
+
             if random.random() < pause_probability:
-                time.sleep(random.uniform(2.0, 3.5))  # Долгая пауза, будто человек задумался
-
-
-    def start_typing(self) -> None:
-        """
-        Начинает печатать текст из буфера обмена.
-        """
-        buffer = pyperclip.paste()
-        self.type_text(buffer)
+                time.sleep(random.uniform(2.0, 3.5))
 
     def check_clipboard(self) -> None:
         """
