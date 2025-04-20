@@ -33,7 +33,7 @@ class Akemu(customtkinter.CTk):
         logo_label.grid(row=0, column=0, padx=20, pady=(20, 0))
 
         self.countdown_label = customtkinter.CTkLabel(
-            self, text="00:03", font=customtkinter.CTkFont(size=20, weight="bold")
+            self, text="00:04", font=customtkinter.CTkFont(size=20, weight="bold")
         )
         self.countdown_label.grid(row=0, column=1, padx=(95, 20), pady=(20, 0))
 
