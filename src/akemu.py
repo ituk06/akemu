@@ -85,35 +85,40 @@ class Akemu(customtkinter.CTk):
     @staticmethod
     def type_text(buffer: str) -> None:
         """
-        Печатает текст из буфера обмена с задержками и имитацией опечаток.
+        Печатает текст из буфера обмена с задержками, имитацией опечаток и частыми паузами.
         """
-        typo_probability = 0.04  # Вероятность случайной опечатки
-        correction_delay = (0.15, 0.3)  # Задержка перед исправлением ошибки
+        typo_probability = 0.05  # Вероятность опечатки
+        pause_probability = 0.12  # Вероятность "задумчивой" паузы
+        correction_delay = (0.4, 0.7)  # Пауза перед исправлением ошибки
     
-        for character in buffer:
+        for i, character in enumerate(buffer):
             if keyboard.is_pressed('p'):
                 break
     
-            delay = random.uniform(0.08, 0.18)
+            # Основная задержка между символами — медленно
+            delay = random.uniform(0.25, 0.5)
     
-            # Пауза на знаках препинания и переносах строк
-            if character in ['.', ',', ';', ':', '-', '—']:
-                delay += random.uniform(0.1, 0.3)
+            # Увеличенная задержка на знаках препинания и новой строке
+            if character in ['.', ',', ';', ':', '-', '—', '!', '?']:
+                delay += random.uniform(0.4, 0.8)
             elif character == '\n':
-                delay += random.uniform(0.3, 0.5)
-            elif random.random() < 0.05:
-                delay += random.uniform(0.2, 0.4)
+                delay += random.uniform(0.6, 1.0)
     
-            # Иногда делаем опечатку
+            # Опечатка с последующим исправлением
             if random.random() < typo_probability and character.isalpha():
                 wrong_char = random.choice('abcdefghijklmnopqrstuvwxyz')
                 keyboard.write(wrong_char, delay=0)
                 time.sleep(random.uniform(*correction_delay))
                 keyboard.send('backspace')
-                time.sleep(random.uniform(0.1, 0.2))
+                time.sleep(random.uniform(0.25, 0.4))
     
             keyboard.write(character, delay=0)
             time.sleep(delay)
+    
+            # Иногда делаем "зависание"
+            if random.random() < pause_probability:
+                time.sleep(random.uniform(1.0, 2.0))
+
 
     def start_typing(self) -> None:
         """
