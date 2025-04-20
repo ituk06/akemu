@@ -85,12 +85,35 @@ class Akemu(customtkinter.CTk):
     @staticmethod
     def type_text(buffer: str) -> None:
         """
-        Печатает текст из буфера обмена с задержкой.
+        Печатает текст из буфера обмена с задержками и имитацией опечаток.
         """
+        typo_probability = 0.04  # Вероятность случайной опечатки
+        correction_delay = (0.15, 0.3)  # Задержка перед исправлением ошибки
+    
         for character in buffer:
             if keyboard.is_pressed('p'):
                 break
-            keyboard.write(character, delay=random.uniform(0.095, 0.15))
+    
+            delay = random.uniform(0.08, 0.18)
+    
+            # Пауза на знаках препинания и переносах строк
+            if character in ['.', ',', ';', ':', '-', '—']:
+                delay += random.uniform(0.1, 0.3)
+            elif character == '\n':
+                delay += random.uniform(0.3, 0.5)
+            elif random.random() < 0.05:
+                delay += random.uniform(0.2, 0.4)
+    
+            # Иногда делаем опечатку
+            if random.random() < typo_probability and character.isalpha():
+                wrong_char = random.choice('abcdefghijklmnopqrstuvwxyz')
+                keyboard.write(wrong_char, delay=0)
+                time.sleep(random.uniform(*correction_delay))
+                keyboard.send('backspace')
+                time.sleep(random.uniform(0.1, 0.2))
+    
+            keyboard.write(character, delay=0)
+            time.sleep(delay)
 
     def start_typing(self) -> None:
         """
