@@ -96,13 +96,13 @@ class Akemu(customtkinter.CTk):
                 break
     
             # Основная задержка между символами — медленно
-            delay = random.uniform(0.25, 1)
+            delay = random.uniform(0.25, 0.5)
     
             # Увеличенная задержка на знаках препинания и новой строке
             if character in ['.', ',', ';', ':', '-', '—', '!', '?']:
                 delay += random.uniform(0.4, 0.8)
             elif character == '\n':
-                delay += random.uniform(0.6, 1.0)
+                delay += random.uniform(0.6, 0.8)
     
             # Опечатка с последующим исправлением
             if random.random() < typo_probability and character.isalpha():
