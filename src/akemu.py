@@ -88,7 +88,7 @@ class Akemu(customtkinter.CTk):
         Печатает текст из буфера обмена с задержками, имитацией опечаток и частыми паузами.
         """
         typo_probability = 0.05  # Вероятность опечатки
-        pause_probability = 0.12  # Вероятность "задумчивой" паузы
+        pause_probability = 0.2  # Вероятность "задумчивой" паузы
         correction_delay = (0.4, 0.7)  # Пауза перед исправлением ошибки
     
         for i, character in enumerate(buffer):
@@ -96,7 +96,7 @@ class Akemu(customtkinter.CTk):
                 break
     
             # Основная задержка между символами — медленно
-            delay = random.uniform(0.25, 0.5)
+            delay = random.uniform(0.25, 1)
     
             # Увеличенная задержка на знаках препинания и новой строке
             if character in ['.', ',', ';', ':', '-', '—', '!', '?']:
